@@ -6,7 +6,7 @@ import net.minecraftforge.common.config.Property;
 public class Config {
 
 	public static Configuration config;
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 	
 	public static int LoadIntProperty(String category, String key, String description, int defaultValue) {
 		Property property = Config.config.get(category, key, defaultValue);
@@ -72,6 +72,8 @@ public class Config {
 
 		if (DEBUG)
 			System.out.println("Loaded String[] " + key + ": " + defaultValue);
+		
+		property.setComment(description);
 		
 		return property.getStringList();
 	}

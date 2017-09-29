@@ -19,6 +19,8 @@ public class CustomEventHandler {
 	
 	private static boolean babyMobs = Stats.babyMobs;
 	
+	private static String[] mobs_affected = Stats.mobs_affected;
+	
 	@SubscribeEvent
 	public static void EntitySpawn(EntityJoinWorldEvent event) {
 		Entity entity = event.getEntity();
@@ -27,6 +29,14 @@ public class CustomEventHandler {
 		byte isAlreadyChecked = tags.getByte("babyAnimalsCheck");
 	
 		if (!(entity instanceof EntityAgeable)) 
+			return;
+		
+		boolean affected = false;
+		for (String mob : mobs_affected) {
+			if (EntityList.getKey(entity).toString().equals(mob))
+				affected = true;
+		}
+		if(!affected)
 			return;
 		
 		if (isAlreadyChecked == 1)
