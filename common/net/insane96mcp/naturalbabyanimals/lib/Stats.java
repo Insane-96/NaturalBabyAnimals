@@ -30,6 +30,6 @@ public class Stats {
 			"minecraft:mooshroom"
 		};
 		
-		mobs_affected = Config.LoadStringListProperty("general", "mobs_affected", "This is a list of mobs that can spawn as baby", mobs_affected_default);
+		mobs_affected = Config.LoadStringListProperty("general", "mobs_affected", "List of mobs that can spawn as baby", mobs_affected_default);
 	}
 }
