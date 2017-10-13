@@ -1,7 +1,5 @@
 package net.insane96mcp.naturalbabyanimals.lib;
 
-import java.util.Set;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.EntityList;
@@ -15,11 +13,10 @@ public class CustomEventHandler {
 	private static int minAge = Stats.minAgeTicks;
 	private static int maxAge = Stats.maxAgeTicks;
 	
-	private static float chance = Stats.chance / 100f;
-	
 	private static boolean babyMobs = Stats.babyMobs;
 	
 	private static String[] mobs_affected = Stats.mobs_affected;
+	private static float[] mobs_affected_chance = Stats.mobs_affected_chance;
 	
 	@SubscribeEvent
 	public static void EntitySpawn(EntityJoinWorldEvent event) {
@@ -32,9 +29,12 @@ public class CustomEventHandler {
 			return;
 		
 		boolean affected = false;
-		for (String mob : mobs_affected) {
-			if (EntityList.getKey(entity).toString().equals(mob))
+		int index = 0;
+		for (int i = 0; i < mobs_affected.length; i++) {
+			if (EntityList.getKey(entity).toString().equals(mobs_affected[i])) {
 				affected = true;
+				index = i;
+			}
 		}
 		if(!affected)
 			return;
@@ -59,7 +59,7 @@ public class CustomEventHandler {
 		isAlreadyChecked = 1;
 		tags.setByte("babyAnimalsCheck", isAlreadyChecked);
 		
-		if (event.getWorld().rand.nextFloat() < chance) {
+		if (event.getWorld().rand.nextFloat() < mobs_affected_chance[index]) {
 			animal.setGrowingAge(-(animal.getEntityWorld().rand.nextInt(maxAge - minAge) + minAge));
 		}
 	}
