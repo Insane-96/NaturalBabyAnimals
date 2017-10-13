@@ -13,6 +13,7 @@ public class CommonProxy {
 		Config.config = new Configuration(event.getSuggestedConfigurationFile());
 		Config.SyncConfig();
 		Stats.Init();
+		
 	}
 	
 	public void Init(FMLInitializationEvent event) {
