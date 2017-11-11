@@ -29,7 +29,7 @@ public class EntityJoinWorld {
 		boolean affected = false;
 		int index = 0;
 		for (int i = 0; i < Properties.General.mobs_affected.length; i++) {
-			if (EntityList.getKey(entity).toString().equals(Properties.General.mobs_affected[i])) {
+			if (EntityList.getEntityString(entity).equals(Properties.General.mobs_affected[i])) {
 				affected = true;
 				index = i;
 			}
