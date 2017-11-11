@@ -1,4 +1,4 @@
-package net.insane96mcp.naturalbabyanimals;
+package net.insane96mcp.naturalbabyanimals.proxies;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
