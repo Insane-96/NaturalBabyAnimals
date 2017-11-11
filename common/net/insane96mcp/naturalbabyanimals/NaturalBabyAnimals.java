@@ -2,6 +2,7 @@ package net.insane96mcp.naturalbabyanimals;
 
 import java.util.Random;
 
+import net.insane96mcp.naturalbabyanimals.proxies.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
