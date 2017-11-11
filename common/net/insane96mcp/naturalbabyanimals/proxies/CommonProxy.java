@@ -1,7 +1,8 @@
-package net.insane96mcp.naturalbabyanimals;
+package net.insane96mcp.naturalbabyanimals.proxies;
 
-import net.insane96mcp.naturalbabyanimals.lib.CustomEventHandler;
-import net.insane96mcp.naturalbabyanimals.lib.Stats;
+import net.insane96mcp.naturalbabyanimals.events.EntityJoinWorld;
+import net.insane96mcp.naturalbabyanimals.lib.Config;
+import net.insane96mcp.naturalbabyanimals.lib.Properties;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -12,11 +13,12 @@ public class CommonProxy {
 	public void PreInit(FMLPreInitializationEvent event) {
 		Config.config = new Configuration(event.getSuggestedConfigurationFile());
 		Config.SyncConfig();
-		Stats.Init();
+		Properties.Init();
+		
 	}
 	
 	public void Init(FMLInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(CustomEventHandler.class);
+		MinecraftForge.EVENT_BUS.register(EntityJoinWorld.class);
 	}
 	
 	public void PostInit(FMLPostInitializationEvent event) {

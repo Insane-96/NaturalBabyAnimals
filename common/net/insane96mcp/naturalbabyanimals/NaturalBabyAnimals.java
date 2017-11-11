@@ -2,6 +2,7 @@ package net.insane96mcp.naturalbabyanimals;
 
 import java.util.Random;
 
+import net.insane96mcp.naturalbabyanimals.proxies.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -15,15 +16,13 @@ public class NaturalBabyAnimals {
 	
 	public static final String MOD_ID = "naturalbabyanimals";
 	public static final String MOD_NAME = "Natural Baby Animals";
-	public static final String VERSION = "1.0.4";
+	public static final String VERSION = "1.1.0";
 	public static final String RESOURCE_PREFIX = MOD_ID.toLowerCase() + ":";
-
-	public static Random random = new Random();
 	
 	@Instance(MOD_ID)
 	public static NaturalBabyAnimals instance;
 	
-	@SidedProxy(clientSide = "net.insane96mcp.naturalbabyanimals.ClientProxy", serverSide = "net.insane96mcp.naturalbabyanimals.ServerProxy")
+	@SidedProxy(clientSide = "net.insane96mcp.naturalbabyanimals.proxies.ClientProxy", serverSide = "net.insane96mcp.naturalbabyanimals.proxies.ServerProxy")
 	public static CommonProxy proxy;
 	
 	@EventHandler
