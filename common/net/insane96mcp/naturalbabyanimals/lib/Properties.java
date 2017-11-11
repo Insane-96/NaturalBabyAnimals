@@ -20,7 +20,7 @@ public class Properties {
 			"minecraft:cow,50.0",
 			"minecraft:sheep,50.0",
 			"minecraft:mooshroom,50.0",
-			"minecraft:villager,15.0"
+			"minecraft:villager,25.0"
 		};
 		
 		public static void Init() {
