@@ -20,6 +20,13 @@ compileJava {
     sourceCompatibility = targetCompatibility = "1.6"
 }
 
+sourceSets {
+    main {
+        java { srcDirs = ["$projectDir/common"] }
+        resources { srcDirs = ["$projectDir/resources"] }
+    }
+}
+
 minecraft {
     version = "1.10.2-12.18.3.2511"
     runDir = "run"
