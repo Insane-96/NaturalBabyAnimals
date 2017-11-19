@@ -23,7 +23,7 @@ public class NaturalBabyAnimals {
 	@Instance(MOD_ID)
 	public static NaturalBabyAnimals instance;
 	
-	@SidedProxy(clientSide = "net.insane96mcp.naturalbabyanimals.wproxies.ClientProxy", serverSide = "net.insane96mcp.naturalbabyanimals.proxies.ServerProxy")
+	@SidedProxy(clientSide = "net.insane96mcp.naturalbabyanimals.proxies.ClientProxy", serverSide = "net.insane96mcp.naturalbabyanimals.proxies.ServerProxy")
 	public static CommonProxy proxy;
 	
 	@EventHandler
