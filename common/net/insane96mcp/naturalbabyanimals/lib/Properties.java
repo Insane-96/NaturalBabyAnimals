@@ -1,18 +1,22 @@
 package net.insane96mcp.naturalbabyanimals.lib;
 
+import net.insane96mcp.naturalbabyanimals.NaturalBabyAnimals;
+import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.Config.Comment;
+import net.minecraftforge.common.config.Config.Name;
+import net.minecraftforge.common.config.Config.Type;
+import net.minecraftforge.common.config.ConfigManager;
+import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+
+@Config(modid = NaturalBabyAnimals.MOD_ID, category = "", name = "NaturalBabyAnimals")
 public class Properties {
 	
-	public static void Init() {
-		General.Init();
-	}
+	@Name("Config")
+	public static final ConfigOptions config = new ConfigOptions();
 	
-	public static class General{
-		public static int minAgeTicks;
-		public static int maxAgeTicks;
-		
-		public static String[] mobs_chance;
-		public static String[] mobs_affected;
-		public static float[] mobs_affected_chance;
+	public static class ConfigOptions {
 		
 		private static String[] mobs_chance_default = new String[] {
 			"minecraft:chicken,50.0",
@@ -23,20 +27,30 @@ public class Properties {
 			"minecraft:villager,25.0"
 		};
 		
-		public static void Init() {
-			minAgeTicks = Config.LoadIntProperty("general", "min_age_ticks", "Minium random value to set the animals' age", 6000);
-			maxAgeTicks = Config.LoadIntProperty("general", "max_age_ticks", "Maximum random value to set the animals' age\n1200 is one minute to grow up. 24000 is 20 minutes\n", 24000);
-			
-			mobs_chance = Config.LoadStringListProperty("general", "mobs_chance", "List of mobs that can spawn as baby and chance for them to become baby\nThe format is modid:entityname,percentageChance (e.g. babymobs:zombiechicken,50.0). Get to a new line to add more mobs\n", mobs_chance_default);
+		@Comment("Minium random value to set the animals' age")
+		public static int minAgeTicks = 6000;
+		@Comment("Maximum random value to set the animals' age\n1200 is one minute to grow up. 24000 is 20 minutes")
+		public static int maxAgeTicks = 24000;
+		
+		@Comment("List of mobs that can spawn as baby and chance for them to become baby\nThe format is modid:entityname,percentageChance (e.g. babymobs:zombiechicken,50.0). Get to a new line to add more mobs")
+		public static String[] mobsAffected = mobs_chance_default;
+	}
 
-			mobs_affected = new String[mobs_chance.length];
-			mobs_affected_chance = new float[mobs_chance.length];
-			
-			for (int i = 0; i < mobs_chance.length; i++) {
-				String[] affected_and_chance = mobs_chance[i].split(",");
-				mobs_affected[i] = affected_and_chance[0];
-				mobs_affected_chance[i] = Float.parseFloat(affected_and_chance[1]) / 100f;
-			}
-		}
+	@Mod.EventBusSubscriber(modid = NaturalBabyAnimals.MOD_ID)
+	private static class EventHandler{
+	    public static void onConfigChangedEvent(OnConfigChangedEvent event)
+	    {
+	        if (event.getModID().equals(NaturalBabyAnimals.MOD_ID))
+	        {
+	            ConfigManager.sync(NaturalBabyAnimals.MOD_ID, Type.INSTANCE);
+	        }
+	    }
+	    
+	    public static void onPlayerLoggedIn(PlayerLoggedInEvent event) {
+	    	if (event.player.world.isRemote)
+	    		return;
+	    	
+	    	
+	    }
 	}
 }
