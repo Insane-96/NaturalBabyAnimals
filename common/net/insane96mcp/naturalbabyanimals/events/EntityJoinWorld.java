@@ -40,7 +40,7 @@ public class EntityJoinWorld {
 		for (int i = 0; i < Properties.config.mobsAffected.length; i++) {
 			String[] affectedAndChance = Properties.config.mobsAffected[i].split(",");
 			if (affectedAndChance[0].equals("")) {
-				NaturalBabyAnimals.logger.warn("Found empty line {}:'{}' in Mobs List", i, Properties.config.mobsAffected[i]);
+				NaturalBabyAnimals.logger.warn("Found empty line ({}) in Mobs List", i);
 				continue;
 			}
 			mobsAffected[i] = affectedAndChance[0];
@@ -92,8 +92,6 @@ public class EntityJoinWorld {
 		
 		if (ratio > mobsAffectedChance[index])
 			ratio = random.nextFloat();
-		
-		System.out.format("%f, %d, %d\n", ratio, baby, adult);
 		
 		if (ratio <= mobsAffectedChance[index]) {
 			int age = random.nextInt(Properties.config.maxAgeTicks - Properties.config.minAgeTicks) + Properties.config.minAgeTicks;
