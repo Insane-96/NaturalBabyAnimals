@@ -1,5 +1,7 @@
 package net.insane96mcp.naturalbabyanimals;
 
+import org.apache.logging.log4j.Logger;
+
 import net.insane96mcp.naturalbabyanimals.proxies.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -24,8 +26,12 @@ public class NaturalBabyAnimals {
 	@SidedProxy(clientSide = "net.insane96mcp.naturalbabyanimals.proxies.ClientProxy", serverSide = "net.insane96mcp.naturalbabyanimals.proxies.ServerProxy")
 	public static CommonProxy proxy;
 	
+	public static Logger logger;
+	
 	@EventHandler
 	public void PreInit(FMLPreInitializationEvent event) {
+		logger = event.getModLog();
+		
 		proxy.PreInit(event);
 	}
 	
