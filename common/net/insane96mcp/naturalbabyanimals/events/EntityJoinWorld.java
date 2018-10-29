@@ -93,6 +93,9 @@ public class EntityJoinWorld {
 		if (ratio > mobsAffectedChance[index])
 			ratio = random.nextFloat();
 		
+		if (baby + adult == 0)
+			ratio = 1;
+		
 		if (ratio <= mobsAffectedChance[index]) {
 			int age = random.nextInt(Properties.config.maxAgeTicks - Properties.config.minAgeTicks) + Properties.config.minAgeTicks;
 			animal.setGrowingAge(-age);
